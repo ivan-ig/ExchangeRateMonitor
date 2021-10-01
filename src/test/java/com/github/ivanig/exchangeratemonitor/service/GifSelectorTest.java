@@ -1,9 +1,14 @@
 package com.github.ivanig.exchangeratemonitor.service;
 
+import com.github.ivanig.exchangeratemonitor.client.GiphyFeignClient;
 import com.github.ivanig.exchangeratemonitor.config.GiphyProperties;
+import com.github.ivanig.exchangeratemonitor.util.DataUtils;
+import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,21 +22,28 @@ class GifSelectorTest {
     @Autowired
     private GiphyProperties giphyProperties;
 
-    private static final String urlBeginning = "https://";
+    @MockBean
+    private GiphyFeignClient giphyFeignClient;
 
     @Test
     public void selectGifShouldReturnStringUrl() {
-        assertTrue(gifSelector.selectGif(0).startsWith(urlBeginning));
-        assertEquals(giphyProperties.getNoChangeGifUrl(), gifSelector.selectGif(0));
+        JSONObject giphyResponse = DataUtils.getResponseFromGiphy();
+
+        Mockito.when(giphyFeignClient.findGif(Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(giphyResponse);
+
+        final String gifUrl = gifSelector.selectGif(1);
+        assertTrue(gifUrl.startsWith("https://") && gifUrl.endsWith("giphy.gif"));
     }
 
     @Test
-    public void selectGifShouldReturnStringUrlWhenArgumentEqualsMinusOne() {
-        assertTrue(gifSelector.selectGif(-1).startsWith(urlBeginning));
-    }
+    public void selectGifShouldReturnSpecifiedStringUrl() {
+        JSONObject giphyResponse = DataUtils.getResponseFromGiphy();
 
-    @Test
-    public void selectGifShouldReturnStringUrlWhenArgumentEqualsOne() {
-        assertTrue(gifSelector.selectGif(1).startsWith(urlBeginning));
+        Mockito.when(giphyFeignClient.findGif(Mockito.any(), Mockito.any(), Mockito.any()))
+                .thenReturn(giphyResponse);
+
+        final String gifUrl = gifSelector.selectGif(0);
+        assertEquals(gifUrl, giphyProperties.getNoChangeGifUrl());
     }
 }
