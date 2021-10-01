@@ -1,11 +1,8 @@
 package com.github.ivanig.exchangeratemonitor.client.model;
 
-import org.springframework.stereotype.Component;
-
 import java.math.BigDecimal;
 import java.util.Map;
 
-@Component
 public class OxrResponse {
     private String disclaimer;
     private String license;
