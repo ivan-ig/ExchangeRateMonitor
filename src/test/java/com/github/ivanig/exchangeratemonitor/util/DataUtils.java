@@ -21,6 +21,9 @@ public class DataUtils {
     }
 
     public static JSONObject getResponseFromGiphy() {
-        return new JSONObject(Map.of("image_original_url", "https://some_params/giphy.gif"));
+        Map<String, String> data = Map.of("image_original_url", "https://some_params/giphy.gif");
+        Map<String, String> meta = Map.of("anything", "anything");
+        Map<String, Map<String, String>> response = Map.of("data", data, "meta", meta);
+        return new JSONObject(response);
     }
 }
