@@ -24,9 +24,9 @@ public class ConversionController {
     }
 
     @GetMapping("/{currencyCode}")
-    public void getCurrentRate(@PathVariable String currencyCode,
-                               @RequestParam(value = "basedOn", required = false) String extraBase,
-                               HttpServletResponse httpServletResponse) throws IOException {
+    public void redirectToGif(@PathVariable String currencyCode,
+                              @RequestParam(value = "basedOn", required = false) String extraBase,
+                              HttpServletResponse httpServletResponse) throws IOException {
         int richOrBroke = rateCalculator.calculate(currencyCode, extraBase);
         String gifUrl = gifSelector.selectGif(richOrBroke);
         httpServletResponse.sendRedirect(gifUrl);
