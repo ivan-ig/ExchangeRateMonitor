@@ -21,19 +21,21 @@ public class GifSelector {
         JSONObject giphyResponse;
         String originalGifUrl = properties.getNoChangeGifUrl();
         if (richOrBroke == -1) {
-            giphyResponse = giphyFeignClient.findGif(properties.getAppId(), properties.getTagBroke(),
-                    properties.getRating());
-            originalGifUrl = searchGifUrl(giphyResponse);
+            giphyResponse = getGiphyResponse(properties.getTagBroke());
+            originalGifUrl = lookForGifUrl(giphyResponse);
         }
         if (richOrBroke == 1) {
-            giphyResponse = giphyFeignClient.findGif(properties.getAppId(), properties.getTagRich(),
-                    properties.getRating());
-            originalGifUrl = searchGifUrl(giphyResponse);
+            giphyResponse = getGiphyResponse(properties.getTagRich());
+            originalGifUrl = lookForGifUrl(giphyResponse);
         }
         return originalGifUrl;
     }
 
-    private String searchGifUrl(JSONObject giphyResponse) {
+    private JSONObject getGiphyResponse(String tag) {
+        return giphyFeignClient.findGif(properties.getAppId(), tag, properties.getRating());
+    }
+
+    private String lookForGifUrl(JSONObject giphyResponse) {
         return JsonPath.read(giphyResponse, "$.data.image_original_url");
     }
 }
