@@ -1,22 +1,25 @@
 package com.github.ivanig.exchangeratemonitor.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.*;
+
+@Validated
 @ConfigurationProperties(prefix = "oxr")
 public class OxrProperties {
 
+    @NotBlank
     private String appId;
+
+    @Size(min = 3, max = 3)
+    @Pattern(regexp = "[A-Z]+")
     private String base;
+
+    @NotBlank
+    @Min(1)
+    @Digits(integer = 3, fraction = 0)
     private String numberOfDaysAgo;
-
-    public OxrProperties() {
-    }
-
-    public OxrProperties(String appId, String base, String numberOfDaysAgo) {
-        this.appId = appId;
-        this.base = base;
-        this.numberOfDaysAgo = numberOfDaysAgo;
-    }
 
     public String getAppId() {
         return appId;

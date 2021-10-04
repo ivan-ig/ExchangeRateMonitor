@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.github.ivan-ig'
-version = '0.0.2-SNAPSHOT'
+version = '0.0.3-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -15,7 +15,7 @@ repositories {
 
 ext {
     set('springCloudVersion', "2020.0.4")
-    set('springBootVersion', "2.5.5")
+    set('springBootVersion', "2.5.4")
 }
 
 dependencies {
@@ -24,15 +24,11 @@ dependencies {
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
     implementation 'com.jayway.jsonpath:json-path:2.6.0'
     implementation "org.springframework.boot:spring-boot-starter-parent:${springBootVersion}"
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
     annotationProcessor group: 'org.springframework.boot', name: 'spring-boot-configuration-processor'
     providedRuntime "org.springframework.boot:spring-boot-starter-tomcat:${springBootVersion}"
     testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-    }
 }
 
 test {

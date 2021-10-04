@@ -48,15 +48,4 @@ public class OxrResponse {
     public Map<String, BigDecimal> getRates() {
         return rates;
     }
-
-    @Override
-    public String toString() {
-        return "\nOxrResponse{" +
-                "disclaimer='" + disclaimer + '\'' +
-                ", license='" + license + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", base='" + base + '\'' +
-                ", rates=" + rates +
-                "}\n\n\n";
-    }
 }

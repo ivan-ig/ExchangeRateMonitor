@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "OpenExchangeRates",url = "${oxrAPIBasePath.url}")
+@FeignClient(name = "OpenExchangeRates", url = "${oxrAPIBasePath.url}")
 public interface OxrFeignClient {
 
     @GetMapping("/latest.json")

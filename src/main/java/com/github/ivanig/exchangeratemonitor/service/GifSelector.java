@@ -4,9 +4,9 @@ import com.github.ivanig.exchangeratemonitor.client.GiphyFeignClient;
 import com.github.ivanig.exchangeratemonitor.config.GiphyProperties;
 import com.jayway.jsonpath.JsonPath;
 import org.json.simple.JSONObject;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class GifSelector {
 
     private final GiphyFeignClient giphyFeignClient;

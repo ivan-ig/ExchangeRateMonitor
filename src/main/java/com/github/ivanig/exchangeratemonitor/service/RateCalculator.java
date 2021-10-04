@@ -31,8 +31,8 @@ public class RateCalculator {
         BigDecimal customDateRateValue = rateByDate.getRates().get(currencyCode);
 
         if (extraBase != null && extraBase.equals("RUB")) {
-            todayRateValue = todayRateValue.divide(todayRubleValue, 6, RoundingMode.HALF_UP);
-            customDateRateValue = customDateRateValue.divide(customDateRubleValue, 6, RoundingMode.HALF_UP);
+            todayRateValue = todayRateValue.divide(todayRubleValue, 16, RoundingMode.HALF_UP);
+            customDateRateValue = customDateRateValue.divide(customDateRubleValue, 16, RoundingMode.HALF_UP);
         }
 
         return todayRateValue.compareTo(customDateRateValue);

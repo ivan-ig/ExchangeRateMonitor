@@ -1,14 +1,28 @@
 package com.github.ivanig.exchangeratemonitor.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+@Validated
 @ConfigurationProperties(prefix = "giphy")
 public class GiphyProperties {
 
+    @NotBlank
     private String appId;
+
+    @NotBlank
     private String tagRich;
+
+    @NotBlank
     private String tagBroke;
+
+    @Pattern(regexp = ("g|pg|pg-13|r"))
     private String rating;
+
+    @NotBlank
     private String noChangeGifUrl;
 
     public String getAppId() {
