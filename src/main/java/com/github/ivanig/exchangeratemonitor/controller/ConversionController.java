@@ -28,7 +28,6 @@ public class ConversionController {
                               @RequestParam(value = "basedOn", required = false) String extraBase,
                               HttpServletResponse httpServletResponse) throws IOException {
         int richOrBroke = rateCalculator.calculate(currencyCode, extraBase);
-        System.out.println("\n\n" + richOrBroke + "\n\n");
         String gifUrl = gifSelector.selectGif(richOrBroke);
         httpServletResponse.sendRedirect(gifUrl);
     }

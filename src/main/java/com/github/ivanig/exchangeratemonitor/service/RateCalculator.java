@@ -35,9 +35,6 @@ public class RateCalculator {
             customDateRateValue = customDateRateValue.divide(customDateRubleValue, 16, RoundingMode.HALF_UP);
         }
 
-        System.out.println("todayRateValue" + todayRateValue);
-        System.out.println("customDateRateValue" + customDateRateValue);
-
         return todayRateValue.compareTo(customDateRateValue);
     }
 
