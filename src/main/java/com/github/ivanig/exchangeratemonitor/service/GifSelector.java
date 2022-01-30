@@ -36,6 +36,6 @@ public class GifSelector {
     }
 
     private String lookForGifUrl(JSONObject giphyResponse) {
-        return JsonPath.read(giphyResponse, "$.data.image_original_url");
+        return JsonPath.read(giphyResponse, "$.data.url");
     }
 }

@@ -33,7 +33,7 @@ class GifSelectorTest {
                 .thenReturn(giphyResponse);
 
         final String gifUrl = gifSelector.selectGif(1);
-        assertTrue(gifUrl.startsWith("https://") && gifUrl.endsWith("giphy.gif"));
+        assertTrue(gifUrl.startsWith("https://"));
     }
 
     @Test
